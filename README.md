@@ -13,23 +13,31 @@ rhc app create openshiftmeteorapp \
 ```
 
 `rhc` will automatically clone the app repository with a template in it.
-We don't need the template so lets reset the git history.
+```
+cd openshiftmeteorapp
+```
+The template is not needed, so reset the git history.
 
 1. Checkout ```git checkout --orphan latest_branch```
-2. Delete the branch ```git branch -D master```
-3. Copy the contents of this repository into the branch
-```
-git remote add meteor-openshift -m master https://github.com/Tommsy64/Meteor-Openshift.git
-git pull -s recursive -X theirs meteor-openshift master
-```
-
-Now you can build your meteor app
-```
-cd path/to/your/meteorapp
-meteor build path/to/your/openshiftmeteorapp --directory --server-only
-```
-
-4. Add all the files ```git add -A```
-5. Commit the changes ```git commit -am "First commit"```
-6. Rename the current branch to master ```git branch -m master```
-7. Finally, force update your repository ```git push -f origin master```
+2. Delete the master branch ```git branch -D master```
+3. Rename the current branch to master ```git branch -m master```
+4. Delete the contents of the new branch and unstage changes.
+  ```
+  rm -r * .openshift/
+  git add -A
+  ```
+5. Copy the contents of this repository into the new branch.
+  ```
+  git remote add meteor-openshift -m master https://github.com/Tommsy64/Meteor-Openshift.git
+  git pull -s recursive -X theirs meteor-openshift master
+  git remote remove meteor-openshift
+  ```
+Now you can build your Meteor app:
+  ```
+  cd path/to/your/meteorapp
+  meteor build path/to/your/openshiftmeteorapp --directory --server-only
+  cd path/to/your/openshiftmeteorapp
+  ```
+6. Add all the changes ```git add -A```
+7. Commit the changes ```git commit -am "First deployment"```
+8. Finally, force update your repository ```git push -f --set-upstream origin master```

@@ -21,10 +21,10 @@ if [ -f "$tmp_package_json" ]; then
 		mv "$tmp_package_json" "${OPENSHIFT_REPO_DIR}/package.json"
 fi
 
-# Replacing bcrypt
-_echo "Replacing bcrypt..."
-(cd "${OPENSHIFT_REPO_DIR}/bundle/programs/server/npm/node_modules/meteor/npm-bcrypt/node_modules/"; rm -rf bcrypt)
-(cd "${OPENSHIFT_REPO_DIR}/bundle/programs/server";export TMPDIR="tmp"; npm install bcrypt --cache ${OPENSHIFT_DATA_DIR} --loglevel=info)
+# Replaces bcrypt with native version. Only works on older versions of Node.
+# _echo "Replacing bcrypt..."
+# (cd "${OPENSHIFT_REPO_DIR}/bundle/programs/server/npm/node_modules/meteor/npm-bcrypt/node_modules/"; rm -rf bcrypt)
+# (cd "${OPENSHIFT_REPO_DIR}/bundle/programs/server";export TMPDIR="tmp"; npm install bcrypt --cache ${OPENSHIFT_DATA_DIR} --loglevel=info)
 
 _echo "Installs Meteor bundle dependencies..."
 echo
