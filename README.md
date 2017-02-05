@@ -20,24 +20,25 @@ The template is not needed, so reset the git history.
 
 1. Checkout ```git checkout --orphan latest_branch```
 2. Delete the master branch ```git branch -D master```
-3. Rename the current branch to master ```git branch -m master```
-4. Delete the contents of the new branch and unstage changes.
+3. Delete the contents of the new branch and unstage changes.
   ```
   rm -r * .openshift/
   git add -A
   ```
-5. Copy the contents of this repository into the new branch.
+4. Copy the contents of this repository into the new branch.
+  
   ```
   git remote add meteor-openshift -m master https://github.com/Tommsy64/Meteor-Openshift.git
   git pull -s recursive -X theirs meteor-openshift master
   git remote remove meteor-openshift
   ```
-Now you can build your Meteor app:
+
+5. Now you can build your Meteor app:
+  
   ```
-  cd path/to/your/meteorapp
-  meteor build path/to/your/openshiftmeteorapp --directory --server-only
-  cd path/to/your/openshiftmeteorapp
+  (METEOR_APP_PATH=path/to/your/meteorapp && OPENSHIFT_APP_PATH=path/to/your/openshiftmeteorapp && cd $METEOR_APP_PATH && meteor build $OPENSHIFT_APP_PATH --directory --server-only)
   ```
 6. Add all the changes ```git add -A```
 7. Commit the changes ```git commit -am "First deployment"```
-8. Finally, force update your repository ```git push -f --set-upstream origin master```
+8. Rename the current branch to master ```git branch -m master```
+9. Finally, force update your repository ```git push -f --set-upstream origin master```. This will take a couple of minutes.
