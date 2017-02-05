@@ -1,0 +1,21 @@
+{
+	"name": "meteor-openshift",
+	"version": "0.1.0",
+	"description": "Meteor.js bundler for OpenShift",
+	"keywords": [
+		"OpenShift",
+		"Node.js",
+		"Meteor.js",
+		"Meteor"
+	],
+	"homepage": "https://github.com/tommsy64/meteor-openshift",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tommsy64/meteor-openshift.git"
+	},
+	"private": true,
+	"main": "start.js",
+	"scripts": {
+		"start" : "node start.js"
+	}
+}
