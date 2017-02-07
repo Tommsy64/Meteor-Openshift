@@ -9,15 +9,15 @@ function terminator(sig) {
   }
 }
 
-process.on('exit', function () { terminator(); });
+process.on("exit", function () { terminator(); });
 [
-  'SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-  'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
+  "SIGHUP", "SIGINT", "SIGQUIT", "SIGILL", "SIGTRAP", "SIGABRT",
+  "SIGBUS", "SIGFPE", "SIGUSR1", "SIGSEGV", "SIGUSR2", "SIGTERM"
 ].forEach(function (element, index, array) {
   process.on(element, function () {
     terminator(element);
   });
 });
 
-require('./meteor_shim.js');
-require('./bundle/main.js');
+require("./meteor_shim.js");
+require("./bundle/main.js");

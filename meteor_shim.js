@@ -5,8 +5,8 @@ process.env.ROOT_URL = "http://" + APP_DNS || "http://localhost";
 process.env.MONGO_URL = process.env.MONGODB_URL || "PLEASE_PROVIDE_A_MONGO_URL";
 // process.env.MAIL_URL = "smtp://email:password@smtp.gmail.com:465";
 process.env.PORT = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-process.env.BIND_IP = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-process.env.DDP_DEFAULT_CONNECTION_URL = 'https://' + APP_DNS + ':8443';
+process.env.BIND_IP = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+process.env.DDP_DEFAULT_CONNECTION_URL = "https://" + APP_DNS + ":8443";
 
 // Show connection details on startup
 console.log("*********** Meteor Environment ************");
